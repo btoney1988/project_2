@@ -19,13 +19,13 @@ function teamNum() {
   const text1 = document.getElementById("team8");
   const checkBox2 = document.getElementById("check16");
   const text2 = document.getElementById("team16");
-  if (checkBox1.checked == true) {
+  if (checkBox1.checked === true) {
     text1.style.display = "block";
     text2.style.display = "none";
   } else {
     text1.style.display = "none";
   }
-  if (checkBox2.checked == true) {
+  if (checkBox2.checked === true) {
     text2.style.display = "block";
     text1.style.display = "none";
   } else {
