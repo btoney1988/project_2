@@ -1,21 +1,24 @@
-var thisHour = $("#currentTime");
-var nowTime = moment().hours();
+const thisHour = $("#currentTime");
+// eslint-disable-next-line no-unused-vars
+const nowTime = moment().hours();
 setInterval(() => {
-  var grabDate = moment();
-  var thisDate = grabDate.format("hh:mm:ss A");
+  const grabDate = moment();
+  const thisDate = grabDate.format("hh:mm:ss A");
 
   thisHour.text(thisDate);
 }, 100);
 
-$("input:checkbox").click(function () {
-  $("input:checkbox").not(this).prop("checked", false);
+$("input:checkbox").click(function() {
+  $("input:checkbox")
+    .not(this)
+    .prop("checked", false);
 });
 
 function teamNum() {
-  let checkBox1 = document.getElementById("check8");
-  let text1 = document.getElementById("team8");
-  let checkBox2 = document.getElementById("check16");
-  let text2 = document.getElementById("team16");
+  const checkBox1 = document.getElementById("check8");
+  const text1 = document.getElementById("team8");
+  const checkBox2 = document.getElementById("check16");
+  const text2 = document.getElementById("team16");
   if (checkBox1.checked == true) {
     text1.style.display = "block";
     text2.style.display = "none";
@@ -30,8 +33,8 @@ function teamNum() {
   }
 }
 teamNum();
-$("#teamBtn").click(() => {
-  let eventName = $("#eventName").val();
-  let teamName = $("#teamName").val();
-  let coachName = $("#coachName").val();
-});
+// $("#teamBtn").click(() => {
+//   const eventName = $("#eventName").val();
+//   const teamName = $("#teamName").val();
+//   const coachName = $("#coachName").val();
+// });
