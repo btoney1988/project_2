@@ -1,5 +1,5 @@
 module.exports = function(sequlize, DataTypes) {
-  const winner = sequlize.define("winner", {
+  const Winner = sequlize.define("Winner", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -8,20 +8,33 @@ module.exports = function(sequlize, DataTypes) {
     gameWinner: {
       type: DataTypes.BOOLEAN
     },
-    teamID: {
+    teamId1: {
       type: DataTypes.INTEGER,
       refrences: {
         model: "team",
         key: "id"
       }
     },
-    tournamentID: {
+    teamId2: {
       type: DataTypes.INTEGER,
       refrences: {
-        model: "tournaments",
+        model: "team",
         key: "id"
       }
+    },
+    round: {
+      type: DataTypes.INTEGER
     }
   });
-  return winner;
+
+  Winner.associate = function(models) {
+    Winner.hasOne(models.Team, {
+      foreignKey: "teamId1"
+    });
+    Winner.hasOne(models.Team, {
+      foreignKey: "teamId2"
+    });
+    Winner.hasOne(models.Tournament);
+  };
+  return Winner;
 };
