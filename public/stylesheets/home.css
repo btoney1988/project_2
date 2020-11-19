@@ -264,3 +264,8 @@ p {
   color: black;
   font-weight: bold;
 }
+
+.submitBtn{
+  margin-left: 55px;
+  width: 200px;
+}
