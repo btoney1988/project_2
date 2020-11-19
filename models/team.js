@@ -17,8 +17,8 @@ module.exports = function(sequlize, DataTypes) {
     },
     tournamentID: {
       type: DataTypes.INTEGER,
-      refrences: {
-        model: "tournaments",
+      references: {
+        model: "tournament",
         key: "id"
       }
     }

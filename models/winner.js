@@ -1,5 +1,5 @@
 module.exports = function(sequlize, DataTypes) {
-  const winner = sequlize.define("winner", {
+  const Winner = sequlize.define("winner", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -17,11 +17,11 @@ module.exports = function(sequlize, DataTypes) {
     },
     tournamentID: {
       type: DataTypes.INTEGER,
-      refrences: {
-        model: "tournaments",
+      references: {
+        model: "tournament",
         key: "id"
       }
     }
   });
-  return winner;
+  return Winner;
 };

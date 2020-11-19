@@ -51,3 +51,16 @@ module.exports = function(app) {
     }
   });
 };
+
+app.post("/api/tournamentInfo", (req, res) => {
+  db.Tournament.create({
+    name: req.body.name,
+    teamAmount: req.body.teamAmount
+  })
+    .then(() => {
+      res.redirect(307, "/api/teamInfo");
+    })
+    .catch(err => {
+      res.status(401).json(err);
+    });
+});

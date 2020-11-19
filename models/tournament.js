@@ -5,7 +5,7 @@ module.exports = function(sequlize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
-    tournamentName: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false
     },
