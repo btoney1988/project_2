@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="home.css">
-    <title>Tourny Tracker</title>
+    <link rel="stylesheet" href="stylesheets/home.css">
+    <title>Tourney Tracker</title>
 </head>
 <body id="contactcard">
 <header>
@@ -43,7 +43,7 @@
 </header>
 ​
 
-  <div id="name" style="font-family: 'Chivo', sans-serif; font-weight: 300;">Tourney Tracker</div>
+<div id="name" style="font-family: Open Sans, cursive; font-weight: 300;">Tourney <span class="logo2">Tracker</span></div>
   <img id="img1" src="pics/tournment.png" alt="Icon">
   <br>
   <br>
@@ -61,7 +61,15 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="tName">Team Name</span>
       </div>
-      <input id="teamName"type="text" class="form-control" placeholder="example: Redskins" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+
+      <input id="eventName" type="text" class="form-control" placeholder="example: Redskins"aria-label="Default" aria-describedby="inputGroup-sizing-default">
+      </div>
+      <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="tRank">Team Rank</span>
+      </div>
+
+      <input id="teamName"type="text" class="form-control" placeholder="example: 1" aria-label="Default" aria-describedby="inputGroup-sizing-default">
       </div>
       <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -78,6 +86,10 @@
       <label for="check16"> 16 Teams</label><br>
       <p id="team8"style="display:none">8</p>
       <p id="team16"style="display:none">16</p>
+      <br>
+      
+      <button type="button" class="btn btn-dark submitBtn">submit</button>
+
      
     </div>
   </form>
@@ -127,10 +139,10 @@
 ​
       <p style="font-family: 'Noto Sans JP', sans-serif;" class="footer-company-about">
         <span style="font-family: 'Noto Sans JP', sans-serif;">Our Team</span>
-        <a> Allan Bramley <a>
-          <a>Brian Toney</a>
-          <a>Sean Delaney</a>
-          <a>Vinira Japar</a>
+        <a> Allan Bramley,<a>
+          <a>Brian Toney,</a>
+          <a>Sean Akene,</a>
+          <a>Vinira Japar,</a>
           <a>Mohammed Arafat</a>
       </p>
 ​

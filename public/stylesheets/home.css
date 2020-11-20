@@ -121,6 +121,13 @@
 .footer-distributed h3 span {
   color: lightseagreen;
 }
+.logo{
+  color: #ffffff;
+  font: normal 36px "Open Sans", cursive;
+}
+.logo2{
+  color: lightseagreen;
+}
 .footer-distributed .footer-links {
   color: #ffffff;
   margin: 20px 0 12px;
@@ -238,7 +245,7 @@
   }
 }
 #name {
-  font-size: 50px;
+  font-size: 70px;
   text-align: center;
   text-shadow: 0 6px 8px rgba(0, 0, 0, 1.9);
   color: white;
@@ -263,4 +270,9 @@ label {
 p {
   color: black;
   font-weight: bold;
+}
+
+.submitBtn{
+  margin-left: 55px;
+  width: 200px;
 }
