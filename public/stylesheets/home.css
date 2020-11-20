@@ -29,7 +29,7 @@
   color: #777;
   font-family: sans-serif;
   font-weight: 400;
-  background-image: url("pics/field.jpg");
+  /* background-image: url("pics/field.jpg"); */
 }
 #card {
   background: rgba(251, 251, 251, 0.7);
@@ -121,11 +121,11 @@
 .footer-distributed h3 span {
   color: lightseagreen;
 }
-.logo{
+.logo {
   color: #ffffff;
   font: normal 36px "Open Sans", cursive;
 }
-.logo2{
+.logo2 {
   color: lightseagreen;
 }
 .footer-distributed .footer-links {
@@ -272,7 +272,7 @@ p {
   font-weight: bold;
 }
 
-.submitBtn{
+.submitBtn {
   margin-left: 55px;
   width: 200px;
 }

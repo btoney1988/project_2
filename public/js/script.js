@@ -31,8 +31,9 @@ function teamNum() {
   } else {
     text2.style.display = "none";
   }
+  teamNum();
 }
-teamNum();
+
 // $("#teamBtn").click(() => {
 //   const eventName = $("#eventName").val();
 //   const teamName = $("#teamName").val();
