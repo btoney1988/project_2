@@ -4,7 +4,9 @@ $(document).ready(() => {
       {
         name: "tournament1",
         id: 1,
+        // eslint-disable-next-line prettier/prettier
         teamAmount: 8,
+        // eslint-disable-next-line prettier/prettier
       },
     ];
   }
