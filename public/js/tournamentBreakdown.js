@@ -3,43 +3,36 @@ $(document).ready(() => {
     return [
       {
         id: 1,
-        teamID: 1,
-        tournamentID: 1
+        teamId1: 1,
+        gameWinner: 1
       },
       {
         id: 2,
-        teamID: 2,
-        tournamentID: 1
+        teamID: 2
       },
       {
         id: 3,
-        teamID: 3,
-        tournamentID: 1
+        teamID: 3
       },
       {
         id: 4,
-        teamID: 4,
-        tournamentID: 1
+        teamID: 4
       },
       {
         id: 5,
-        teamID: 5,
-        tournamentID: 1
+        teamID: 5
       },
       {
         id: 6,
-        teamID: 6,
-        tournamentID: 1
+        teamID: 6
       },
       {
         id: 7,
-        teamID: 7,
-        tournamentID: 1
+        teamID: 7
       },
       {
         id: 8,
-        teamID: 8,
-        tournamentID: 1
+        teamID: 8
       }
     ];
   }

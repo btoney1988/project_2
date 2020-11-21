@@ -50,16 +50,72 @@ module.exports = function(app) {
       });
     }
   });
-  app.post("/api/tournamentInfo", (req, res) => {
+  app.post("/api/tournament_info", (req, res) => {
     db.Tournament.create({
-      name: req.body.name,
-      teamAmount: req.body.teamAmount
+      name: req.params.tournamentName
     })
       .then(() => {
-        res.redirect(307, "/api/teamInfo");
+        res.redirect(307, "/api/team_info");
       })
       .catch(err => {
         res.status(401).json(err);
       });
+  });
+  app.post("/api/team_info", (req, res) => {
+    db.Team.create({
+      name: req.body.teamName,
+      seed: req.body.teamRank
+    })
+      .then(() => {
+        res.redirect(307, "/api/tournament_breakdown");
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+  app.post("/api/tournament_breakdown", (req, res) => {
+    db.Winner.create({
+      game: req.body.game,
+      round: req.body.round,
+      gameWinner: req.body.gameWinner
+    })
+      .then(() => {
+        res.redirect(307, "/api/tournament_breakdown");
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+  app.get("/api/tournament_breakdown", (req, res) => {
+    const tournamentInfo = db.Tournament.findOne({
+      where: {
+        id: 1
+      }
+    });
+    const teamInfo = db.Team.findAll({
+      include: [
+        {
+          model: Tournament,
+          where: { id: Sequelize.col("Team.TournamentId") }
+        }
+      ],
+      order: ["Team.seed", "DESC"]
+    });
+    const winnerInfo = db.Winner.findAll({
+      include: {
+        model: Tournament,
+        where: { id: Sequelize.col("Winner.TournamentId") }
+      },
+      where: {
+        gameWinner: {
+          [Op.or]: [{ teamId1 }, { teamId2 }]
+        }
+      }
+    });
+    res.json({
+      tournamentInfo,
+      teamInfo,
+      winnerInfo
+    });
   });
 };

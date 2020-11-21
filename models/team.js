@@ -1,5 +1,5 @@
-module.exports = function(sequlize, DataTypes) {
-  const Team = sequlize.define("Team", {
+module.exports = function(sequelize, DataTypes) {
+  const Team = sequelize.define("Team", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -19,8 +19,6 @@ module.exports = function(sequlize, DataTypes) {
   });
 
   Team.associate = function(models) {
-    // We're saying that a Post should belong to an Author
-    // A Post can't be created without an Author due to the foreign key constraint
     Team.belongsTo(models.Tournament, {
       foreignKey: {
         allowNull: false

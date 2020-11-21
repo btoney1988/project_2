@@ -1,4 +1,2 @@
--- Drops the tournaments if it exists currently --
-DROP DATABASE IF EXISTS tournaments;
--- Creates the "tournaments" database --
-CREATE DATABASE tournaments;
+DROP DATABASE IF EXISTS passport_demo;
+CREATE DATABASE passport_demo;

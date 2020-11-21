@@ -1,28 +1,23 @@
-module.exports = function(sequlize, DataTypes) {
-  const Winner = sequlize.define("Winner", {
+module.exports = function(sequelize, DataTypes) {
+  const Winner = sequelize.define("Winner", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    gameWinner: {
-      type: DataTypes.BOOLEAN
-    },
-    teamId1: {
-      type: DataTypes.INTEGER,
-      refrences: {
-        model: "team",
-        key: "id"
-      }
-    },
-    teamId2: {
-      type: DataTypes.INTEGER,
-      refrences: {
-        model: "team",
-        key: "id"
-      }
+    game: {
+      type: DataTypes.INTEGER
     },
     round: {
+      type: DataTypes.INTEGER
+    },
+    gameWinner: {
+      type: DataTypes.INTEGER
+    },
+    teamId1: {
+      type: DataTypes.INTEGER
+    },
+    teamId2: {
       type: DataTypes.INTEGER
     }
   });
@@ -34,7 +29,6 @@ module.exports = function(sequlize, DataTypes) {
     Winner.hasOne(models.Team, {
       foreignKey: "teamId2"
     });
-    Winner.hasOne(models.Tournament);
   };
   return Winner;
 };
