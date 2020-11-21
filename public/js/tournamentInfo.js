@@ -1,4 +1,51 @@
+// const db = require("../../models");
+loginForm.on("submit", event => {
+  event.preventDefault();
+  const userData = {
+    email: emailInput.val().trim(),
+    password: passwordInput.val().trim()
+  };
+
+  if (!userData.email || !userData.password) {
+    return;
+  }
+
+  // If we have an email and password we run the loginUser function and clear the form
+  loginUser(userData.email, userData.password);
+  emailInput.val("");
+  passwordInput.val("");
+});
+
+// loginUser does a post to our "api/login" route and if successful, redirects us the the members page
+function loginUser(email, password) {
+  $.post("/api/login", {
+    email: email,
+    password: password
+  })
+    .then(() => {
+      window.location.replace("/tournament_info");
+      // If there's an error, log the error
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+// Requiring our models and passport as we've configured it
 $(document).ready(() => {
+  function getTournamentInfo(name) {
+    $.post("/api/tournament_info", {
+      name: name
+    })
+      .then(() => {
+        window.location.replace("/tournament_info");
+        // If there's an error, log the error
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   function getTournamentInfo() {
     return [
       {
@@ -13,15 +60,15 @@ $(document).ready(() => {
 
   getTournamentInfo();
 
-  const thisHour = $("#currentTime");
-  // eslint-disable-next-line no-unused-varss
-  const nowTime = moment().hours();
-  setInterval(() => {
-    const grabDate = moment();
-    const thisDate = grabDate.format("hh:mm:ss A");
+  // const thisHour = $("#currentTime");
+  // // eslint-disable-next-line no-unused-varss
+  // const nowTime = moment().hours();
+  // setInterval(() => {
+  //   const grabDate = moment();
+  //   const thisDate = grabDate.format("hh:mm:ss A");
 
-    thisHour.text(thisDate);
-  }, 100);
+  //   thisHour.text(thisDate);
+  // }, 100);
   // $("input:checkbox").click(function() {
   //   $("input:checkbox")
   //     .not(this)

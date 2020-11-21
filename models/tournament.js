@@ -1,6 +1,6 @@
-module.exports = function(sequlize, DataTypes) {
-  const Tournament = sequlize.define("Tournament", {
-    id: {
+module.exports = function(sequelize, DataTypes) {
+  const Tournament = sequelize.define("Tournament", {
+    tournyId: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
@@ -9,18 +9,13 @@ module.exports = function(sequlize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     }
-    // teamAmount: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false
-    // }
   });
 
   Tournament.associate = function(models) {
-    // Associating Tournament with Posts
-    // When an Tournament is deleted, also delete any associated Posts
     Tournament.hasMany(models.Team, {
       onDelete: "cascade"
     });
+    Tournament.hasOne(models.Winner);
   };
 
   return Tournament;
