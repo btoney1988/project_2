@@ -26,4 +26,16 @@ module.exports = function(app) {
   app.get("/members", isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
+
+  app.get("/tournament_info", (req, res) => {
+    res.sendfile(path.join(__dirname, "../public/tourney_info.html"));
+  });
+
+  app.get("/team_info", (req, res) => {
+    res.sendfile(path.join(__dirname, "../public/team_info.html"));
+  });
+
+  app.get("/tournament_breakdown", (req, res) => {
+    res.sendfile(path.join(__dirname, "../public/tournyBDown.html"));
+  });
 };

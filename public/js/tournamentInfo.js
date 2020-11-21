@@ -1,12 +1,13 @@
+const db = require("../../models");
+
+// Requiring our models and passport as we've configured it
 $(document).ready(() => {
   function getTournamentInfo() {
-    return [
-      {
-        name: "tournament1",
-        id: 1,
-        teamAmount: 8
+    db.Tournament.findAll({
+      where: {
+        id: 1
       }
-    ];
+    });
   }
 
   getTournamentInfo();
