@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   const Team = sequelize.define("Team", {
-    id: {
+    teamId: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
@@ -11,10 +11,7 @@ module.exports = function(sequelize, DataTypes) {
       unique: true
     },
     seed: {
-      type: DataTypes.INTEGER,
-      validate: {
-        not: ["[a-z]", "i"]
-      }
+      type: DataTypes.INTEGER
     }
   });
 

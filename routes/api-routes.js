@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const { Sequelize } = require("sequelize");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -51,16 +52,16 @@ module.exports = function(app) {
     }
   });
   app.post("/api/tournament_info", (req, res) => {
-    db.Tournament.create({
-      name: req.params.tournamentName
-    })
-      .then(() => {
+    db.Tournament.create(req.body)
+      .then(result => {
+        console.log(result);
         res.redirect(307, "/api/team_info");
       })
       .catch(err => {
         res.status(401).json(err);
       });
   });
+
   app.post("/api/team_info", (req, res) => {
     db.Team.create({
       name: req.body.teamName,
@@ -80,6 +81,7 @@ module.exports = function(app) {
       gameWinner: req.body.gameWinner
     })
       .then(() => {
+        console.log("success");
         res.redirect(307, "/api/tournament_breakdown");
       })
       .catch(err => {
@@ -87,35 +89,30 @@ module.exports = function(app) {
       });
   });
   app.get("/api/tournament_breakdown", (req, res) => {
-    const tournamentInfo = db.Tournament.findOne({
-      where: {
-        id: 1
-      }
-    });
-    const teamInfo = db.Team.findAll({
-      include: [
-        {
-          model: Tournament,
-          where: { id: Sequelize.col("Team.TournamentId") }
-        }
-      ],
-      order: ["Team.seed", "DESC"]
-    });
-    const winnerInfo = db.Winner.findAll({
+    const teamInfo = db.Tournament.findAll({
       include: {
-        model: Tournament,
-        where: { id: Sequelize.col("Winner.TournamentId") }
-      },
-      where: {
-        gameWinner: {
-          [Op.or]: [{ teamId1 }, { teamId2 }]
+        model: db.Team,
+        where: {
+          TournamentId: Sequelize.col("tournyId")
         }
       }
     });
-    res.json({
-      tournamentInfo,
-      teamInfo,
-      winnerInfo
+
+    const winnerInfo = db.Tournament.findAll({
+      include: {
+        model: db.Winner,
+        where: {
+          TournamentId: Sequelize.col("tournyId")
+        }
+      }
     });
+
+    Promise.all([teamInfo, winnerInfo])
+      .then(result => {
+        res.json(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   });
 };

@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   const Winner = sequelize.define("Winner", {
-    id: {
+    winId: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
@@ -14,20 +14,20 @@ module.exports = function(sequelize, DataTypes) {
     gameWinner: {
       type: DataTypes.INTEGER
     },
-    teamId1: {
+    team1: {
       type: DataTypes.INTEGER
     },
-    teamId2: {
+    team2: {
       type: DataTypes.INTEGER
     }
   });
 
   Winner.associate = function(models) {
     Winner.hasOne(models.Team, {
-      foreignKey: "teamId1"
+      foreignKey: "team1"
     });
     Winner.hasOne(models.Team, {
-      foreignKey: "teamId2"
+      foreignKey: "team2"
     });
   };
   return Winner;

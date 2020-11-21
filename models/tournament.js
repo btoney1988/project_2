@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   const Tournament = sequelize.define("Tournament", {
-    id: {
+    tournyId: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
@@ -15,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     Tournament.hasMany(models.Team, {
       onDelete: "cascade"
     });
+    Tournament.hasOne(models.Winner);
   };
 
   return Tournament;
