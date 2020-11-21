@@ -52,10 +52,10 @@ module.exports = function(app) {
     }
   });
   app.post("/api/tournament_info", (req, res) => {
-    db.Tournament.create(req.body)
+    db.Tournament.create(req.body.tournamentInfo)
       .then(result => {
         console.log(result);
-        res.redirect(307, "/api/team_info");
+        res.json(result);
       })
       .catch(err => {
         res.status(401).json(err);
@@ -67,8 +67,8 @@ module.exports = function(app) {
       name: req.body.teamName,
       seed: req.body.teamRank
     })
-      .then(() => {
-        res.redirect(307, "/api/tournament_breakdown");
+      .then(result => {
+        res.json(result);
       })
       .catch(err => {
         res.status(401).json(err);
@@ -80,9 +80,8 @@ module.exports = function(app) {
       round: req.body.round,
       gameWinner: req.body.gameWinner
     })
-      .then(() => {
-        console.log("success");
-        res.redirect(307, "/api/tournament_breakdown");
+      .then(result => {
+        res.json(result);
       })
       .catch(err => {
         res.status(401).json(err);
@@ -95,7 +94,8 @@ module.exports = function(app) {
         where: {
           TournamentId: Sequelize.col("tournyId")
         }
-      }
+      },
+      order: ["seed", "DESC"]
     });
 
     const winnerInfo = db.Tournament.findAll({
