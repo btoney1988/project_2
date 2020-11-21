@@ -276,3 +276,9 @@ p {
   margin-left: 55px;
   width: 200px;
 }
+
+.startBtn{
+  margin-left: 420px;
+  width: 400px;
+  text-align: center;
+}
