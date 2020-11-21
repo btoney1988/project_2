@@ -14,7 +14,7 @@ $(document).ready(() => {
   getTournamentInfo();
 
   const thisHour = $("#currentTime");
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-varss
   const nowTime = moment().hours();
   setInterval(() => {
     const grabDate = moment();
