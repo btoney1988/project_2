@@ -1,4 +1,4 @@
-// const db = require("../../models");
+// const db = require("../../modelss");
 loginForm.on("submit", event => {
   event.preventDefault();
   const userData = {
@@ -18,7 +18,7 @@ loginForm.on("submit", event => {
 
 // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
 function loginUser(email, password) {
-  $.post("/api/login", {
+  $.get("/api/tournament_info", {
     email: email,
     password: password
   })
