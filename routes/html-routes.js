@@ -24,14 +24,14 @@ module.exports = function(app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/tournament_info", isAuthenticated, (req, res) => {
-    res.sendfile(path.join(__dirname, "../public/tourney_info.html"));
+    res.sendFile(path.join(__dirname, "../public/tourney_info.html"));
   });
 
   app.get("/team_info", (req, res) => {
-    res.sendfile(path.join(__dirname, "../public/team_info.html"));
+    res.sendFile(path.join(__dirname, "../public/team_info.html"));
   });
 
   app.get("/tournament_breakdown", (req, res) => {
-    res.sendfile(path.join(__dirname, "../public/tournyBDown.html"));
+    res.sendFile(path.join(__dirname, "../public/tournyBDown.html"));
   });
 };
