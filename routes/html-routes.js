@@ -32,10 +32,6 @@ module.exports = function(app) {
   });
 
   app.get("/tournament_breakdown", (req, res) => {
-<<<<<<< HEAD
-    res.sendFile(path.join(__dirname, "../public/tournyBDown.html"));
-=======
     res.sendfile(path.join(__dirname, "../public/render.html"));
->>>>>>> 4d5eb09dd043083febf48ff57906272a487e53fa
   });
 };
