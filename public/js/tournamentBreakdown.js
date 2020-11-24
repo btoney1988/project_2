@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 $(document).ready(() => {
   function getTournamentBreakdown() {
     return [
@@ -38,4 +40,28 @@ $(document).ready(() => {
   }
 
   getTournamentBreakdown();
+
+  
+var allTeam = document.getElementsByClassName("card-body");
+for(var i=1; i<allTeam.length;i++){
+    function getTournamentBreakdown() {
+      $.get("/api/tournament_info", {
+       
+      })
+        .then(data => {
+        $(".teamName"+""+i).text(data[0].Teams[i].name);
+        $(".rank"+""+i).text(data[0].Teams[i].rank)
+       
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      }
+    
+    }
+    $(".startBtn").click(() => {
+
+      window.location.replace("/tournament_bracket");
+    }
+
 });
