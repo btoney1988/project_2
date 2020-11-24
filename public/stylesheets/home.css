@@ -282,3 +282,7 @@ p {
   width: 400px;
   text-align: center;
 }
+
+.top-buffer { 
+  margin-top:50px; 
+}

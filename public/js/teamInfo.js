@@ -46,4 +46,17 @@ $(document).ready(() => {
   }
 
   getTeamInfo();
+
+  function teamInfoDisplay() {
+    $.get("/api/tournament_info", {
+
+    }).then(function (response) {
+      $(".list-group-item team1").text(response.name[1]);
+        // If there's an error, log the error
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
 });
