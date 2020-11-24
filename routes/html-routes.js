@@ -32,6 +32,9 @@ module.exports = function(app) {
   });
 
   app.get("/tournament_breakdown", (req, res) => {
+    res.sendfile(path.join(__dirname, "../public/breakdown.html"));
+  });
+  app.get("/tournament_bracket", (req, res) => {
     res.sendfile(path.join(__dirname, "../public/render.html"));
   });
 };
