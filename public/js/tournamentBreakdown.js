@@ -19,7 +19,7 @@ $(document).ready(() => {
     .catch(err => {
       console.log(err);
     });
-  $(document).on("click", "#startTournament", event => {
+  $(document).on("click", "#startTourney", event => {
     event.preventDefault();
     window.location.replace("/tournamentBracket");
   });
