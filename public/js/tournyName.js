@@ -7,7 +7,7 @@ $(document).ready(() => {
 
   function handleTournyFormSubmit(event) {
     event.preventDefault();
-    if (!tournyInput.val().trim()) {
+    if (!tournyInput.val()) {
       return;
     }
 
