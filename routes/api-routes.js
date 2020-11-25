@@ -62,16 +62,17 @@ module.exports = function(app) {
       include: {
         model: db.Team,
         where: {
-          TournamentId: Sequelize.col("TournamentTournyId")
+          tournyId: Sequelize.col("TournamentTournyId")
         }
-      }
+      },
+      order: Sequelize.col("seed")
     });
 
     const winnerInfo = db.Tournament.findAll({
       include: {
         model: db.Winner,
         where: {
-          TournamentId: Sequelize.col("tournyId")
+          tournyId: Sequelize.col("TournamentTournyId")
         }
       }
     });
