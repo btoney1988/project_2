@@ -49,7 +49,7 @@ $(document).ready(() => {
       .then(response => {
         console.log(id);
         console.log(response[0][tempId]);
-        for (let i = 0; i <= response[0][tempId].Teams.length; i++) {
+        for (let i = 0; i < response[0][tempId].Teams.length; i++) {
           breakdownCard.append(
             `<div class="col-3 mt-2">
              <div class="card" style="width: 14rem;">
