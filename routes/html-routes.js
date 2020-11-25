@@ -9,9 +9,9 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/team_info.html"));
   });
   app.get("/tournamentBreakdown", (req, res) => {
-    res.sendfile(path.join(__dirname, "../public/tournyBDown.html"));
+    res.sendFile(path.join(__dirname, "../public/tournyBDown.html"));
   });
   app.get("/tournamentBracket", (req, res) => {
-    res.sendfile(path.join(__dirname, "../public/render.html"));
+    res.sendFile(path.join(__dirname, "../public/render.html"));
   });
 };

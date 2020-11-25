@@ -1,21 +1,3 @@
-#currentTime {
-  color: white;
-  font-weight: 700;
-  float: right;
-}
-.links-container a {
-  color: white;
-  font-family: sans-serif;
-}
-.links-container div {
-  display: inline-block;
-  padding: 5px 9px;
-}
-.links-container div:hover {
-  background: black;
-  color: white;
-}
-
 #title {
   margin: 0 0 20px 0;
   font-weight: 300;

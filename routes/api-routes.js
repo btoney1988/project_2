@@ -13,7 +13,7 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/team_info", (req, res) => {
+  app.post("/api/teamInfo", (req, res) => {
     db.Team.create({
       name: req.body.name,
       seed: req.body.seed
