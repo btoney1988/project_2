@@ -86,7 +86,8 @@ $(document).ready(() => {
             teamWidth: 100,
             scoreWidth: 50,
             matchMargin: 70,
-            roundMargin: 150
+            roundMargin: 150,
+            disableToolbar: true
           });
 
           /* You can also inquiry the current data */
