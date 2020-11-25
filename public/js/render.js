@@ -1,68 +1,98 @@
 $(document).ready(() => {
-  $.get("/api/team_info")
-    .then(response => {
-      console.log(response);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  const saveData = {
-    teams: [
-      ["Team 1", "Team 2"],
-      ["Team 3", "Team 4"],
-      ["Team 5", "Team 6"],
-      ["Team 7", "Team 8"]
-    ],
-    results: [
-      [
-        [
-          [null, null],
-          [null, null],
-          [null, null],
-          [null, null]
-        ],
-        [
-          [null, null],
-          [null, null]
-        ],
-        [
-          [null, null],
-          [null, null]
-        ]
-      ]
-    ]
-  };
+  const tourneyForm = $("#tourneySelect");
+  const tournamentSelect = $("#tournaments");
 
-  /* Called whenever bracket is modified
-   *
-   * data:     changed bracket object in format given to init
-   * userData: optional data given when bracket is created.
-   */
-  function saveFn(data, userData) {
-    const json = jQuery.toJSON(data);
-    $("#saveOutput").text("POST " + userData + " " + json);
-    /* You probably want to do something like this
-    jQuery.ajax("rest/"+userData, {contentType: 'application/json',
-                                  dataType: 'json',
-                                  type: 'post',
-                                  data: json})
-    */
+  $(tourneyForm).on("click", "#tourneyBreakdown", handleTourneyBreakdownButton);
+
+  function getTournamentInfo() {
+    $.get("/api/tournament_info", renderTourneyList);
+  }
+  getTournamentInfo();
+
+  function renderTourneyList(data) {
+    if (!data.length) {
+      window.location.href = "/";
+    }
+    const rowsToAdd = [];
+    for (let i = 0; i < data.length; i++) {
+      rowsToAdd.push(createTourneyRow(data[i]));
+    }
+    tournamentSelect.empty();
+    console.log(rowsToAdd);
+    console.log(tournamentSelect);
+    tournamentSelect.append(rowsToAdd);
+    tournamentSelect.val(TournamentTournyId);
   }
 
-  $(() => {
-    const container = $("div#save .demo");
-    container.bracket({
-      init: saveData,
-      save: saveFn,
-      userData: "http://myapi",
-      teamWidth: 100,
-      scoreWidth: 50,
-      matchMargin: 70,
-      roundMargin: 150
-    });
+  function createTourneyRow(tourney) {
+    const listOption = $("<option>");
+    listOption.attr("value", tourney.tournyId);
+    listOption.text(tourney.name);
+    return listOption;
+  }
+  function handleTourneyBreakdownButton(event) {
+    event.preventDefault();
 
-    /* You can also inquiry the current data */
-    const data = container.bracket("data");
-    $("#dataOutput").text(jQuery.toJSON(data));
-  });
+    if (!tournamentSelect.val()) {
+      return;
+    }
+    getBreakdownInfo(tournamentSelect.val());
+  }
+  function getBreakdownInfo(id) {
+    const tempId = id - 1;
+    $.get("/api/tournamentBreakdown")
+      .then(response => {
+        console.log(id);
+        console.log(response[0]);
+        const saveData = {
+          teams: [
+            [
+              response[0][tempId].Teams[0].name,
+              response[0][tempId].Teams[7].name
+            ],
+            [
+              response[0][tempId].Teams[1].name,
+              response[0][tempId].Teams[6].name
+            ],
+            [
+              response[0][tempId].Teams[2].name,
+              response[0][tempId].Teams[5].name
+            ],
+            [
+              response[0][tempId].Teams[3].name,
+              response[0][tempId].Teams[4].name
+            ]
+          ],
+          result: [
+            [null, null],
+            [null, null],
+            [null, null],
+            [null, null]
+          ]
+        };
+        function saveFn(data, userData) {
+          const json = jQuery.toJSON(data);
+          $("#saveOutput").text("POST " + userData + " " + json);
+        }
+        $(() => {
+          const container = $("div#save .demo");
+          container.bracket({
+            init: saveData,
+            save: saveFn,
+            userData: "http://myapi",
+            teamWidth: 100,
+            scoreWidth: 50,
+            matchMargin: 70,
+            roundMargin: 150
+          });
+
+          /* You can also inquiry the current data */
+          const data = container.bracket("data");
+          $("#dataOutput").text(jQuery.toJSON(data));
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 });
