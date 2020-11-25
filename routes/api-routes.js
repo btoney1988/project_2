@@ -9,7 +9,7 @@ module.exports = function(app) {
         res.json(dbTournament);
       })
       .catch(err => {
-        res.status(401).json(err);
+        res.status(500).json(err);
       });
   });
 
@@ -19,7 +19,7 @@ module.exports = function(app) {
         res.json(result);
       })
       .catch(err => {
-        res.status(401).json(err);
+        res.status(500).json(err);
       });
   });
   app.post("/api/tournament_win", (req, res) => {
@@ -32,7 +32,7 @@ module.exports = function(app) {
         res.json(result);
       })
       .catch(err => {
-        res.status(401).json(err);
+        res.status(500).json(err);
       });
   });
 
