@@ -43,18 +43,18 @@ $(document).ready(() => {
   }
 
   function getBreakdownInfo(id) {
-    const tempId = id - 1;
+    id = id - 1;
     $.get("/api/tournamentBreakdown")
       .then(response => {
         console.log(id);
-        console.log(response[0][tempId]);
-        for (let i = 0; i < response[0][tempId].Teams.length; i++) {
+        console.log(response[0][id]);
+        for (let i = 0; i < response[0][id].Teams.length; i++) {
           breakdownCard.append(
             `<div class="col-3 mt-2">
              <div class="card" style="width: 14rem;">
                <div class="card-body text-center">
-                 <h5 class="teamName">${response[0][tempId].Teams[i].name}</h5>
-                 <h7 class="rank">Seed: ${response[0][tempId].Teams[i].seed}</h7>
+                 <h5 class="teamName">${response[0][id].Teams[i].name}</h5>
+                 <h7 class="rank">Seed: ${response[0][id].Teams[i].seed}</h7>
                </div>
              </div>
            </div>`
