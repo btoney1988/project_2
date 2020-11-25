@@ -34,24 +34,30 @@
         <div class="col-md-12 text-center">
           <h1 class="mt-5"><span class="tourneyName"></span></h1>
           <h4><u>Teams</u></h4>
-          <ul class ="text-center" id="addTeam"></ul>
+          <ul class="text-center" id="addTeam"></ul>
           <h5 id="name" class="text-center mb-5"
             style="font-family: Open Sans, cursive; font-weight: 300; margin-top:30;">Enter Team Names and Seed!
           </h5>
-          <form class="team-info">
+          <form id="team-info">
             <div class="form-group">
               <div class="input-group mb-3">
                 <div class="input-group">
                   <span class="input-group-text" id="tName">Team Name</span>
+                  <input id="teamName" type="text" class="form-control" placeholder="Enter Team Name Here!"
+                    aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
-                <input id="teamName" type="text" class="form-control" placeholder="Enter Team Name Here!"
-                  aria-label="Default" aria-describedby="inputGroup-sizing-default">
+
                 <div class="input-group mt-2">
                   <span class="input-group-text" id="tSeed">Team Seed</span>
+                  <input id="teamSeed" type="text" class="form-control" placeholder="Enter Team Seed Here!"
+                    aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
-                <input id="teamSeed" type="text" class="form-control" placeholder="Enter Team Seed Here!"
-                  aria-label="Default" aria-describedby="inputGroup-sizing-default">
               </div>
+            </div>
+            <div class="form-group">
+              <span class="select-group-text" id="tSelect">Select Tournament:</span><select class="custom-select"
+                id="tournaments">
+              </select>
             </div>
             <button class="btn btn-dark" id="addTeam">Add Teams</button>
             <button class="btn btn-dark" id="tourneyBreakdown">View Breakdown</button>

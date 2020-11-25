@@ -14,10 +14,7 @@ module.exports = function(app) {
   });
 
   app.post("/api/teamInfo", (req, res) => {
-    db.Team.create({
-      name: req.body.name,
-      seed: req.body.seed
-    })
+    db.Team.create(req.body)
       .then(result => {
         res.json(result);
       })

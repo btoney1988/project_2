@@ -17,7 +17,9 @@ module.exports = function(sequelize, DataTypes) {
 
   Team.associate = function(models) {
     Team.belongsTo(models.Tournament, {
-      foriegnKey: "tournyId"
+      foriegnKey: {
+        allowNull: false
+      }
     });
   };
   return Team;
