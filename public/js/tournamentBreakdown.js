@@ -36,7 +36,6 @@ $(document).ready(() => {
 
   function handleTourneyBreakdownButton(event) {
     event.preventDefault();
-
     if (!tournamentSelect.val()) {
       return;
     }

@@ -1,8 +1,7 @@
 $(document).ready(() => {
-  const tourneyForm = $("#tourneySelect");
   const tournamentSelect = $("#tournaments");
 
-  $(tourneyForm).on("click", "#tourneyBreakdown", handleTourneyBreakdownButton);
+  $(document).on("click", "#tourneyBreakdown", handleTourneyBreakdownButton);
   $(document).on("click", "#home", () => {
     window.location.replace("/");
   });
@@ -39,32 +38,21 @@ $(document).ready(() => {
     if (!tournamentSelect.val()) {
       return;
     }
+    console.log(tournamentSelect.val());
     getBreakdownInfo(tournamentSelect.val());
   }
   function getBreakdownInfo(id) {
-    const tempId = id - 1;
+    id = id - 1;
     $.get("/api/tournamentBreakdown")
       .then(response => {
         console.log(id);
         console.log(response[0]);
         const saveData = {
           teams: [
-            [
-              response[0][tempId].Teams[0].name,
-              response[0][tempId].Teams[7].name
-            ],
-            [
-              response[0][tempId].Teams[1].name,
-              response[0][tempId].Teams[6].name
-            ],
-            [
-              response[0][tempId].Teams[2].name,
-              response[0][tempId].Teams[5].name
-            ],
-            [
-              response[0][tempId].Teams[3].name,
-              response[0][tempId].Teams[4].name
-            ]
+            [response[0][id].Teams[0].name, response[0][id].Teams[7].name],
+            [response[0][id].Teams[1].name, response[0][id].Teams[6].name],
+            [response[0][id].Teams[2].name, response[0][id].Teams[5].name],
+            [response[0][id].Teams[3].name, response[0][id].Teams[4].name]
           ],
           result: [
             [null, null],
