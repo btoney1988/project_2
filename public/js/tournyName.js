@@ -1,33 +1,24 @@
-// Getting references to our form and input
-const tournyForm = $("form.tournyInfo");
-const tournyInput = $("input#tournyName");
+$(document).ready(() => {
+  // Getting references to our form and input
 
-// When the signup button is clicked, we validate the email and password are not blank
-tournyForm.on("submit", event => {
-  event.preventDefault();
-  const userData = {
-    tournament: tournyInput.val().trim()
-  };
+  const tournyInput = $("#tournyName");
 
-  // If we have an email and password, run the signUpUser function
-  enterTourny(userData.tournament);
-  tournyInput.val("");
+  $(document).on("submit", "#tournyInfo", handleTournyFormSubmit);
+
+  function handleTournyFormSubmit(event) {
+    event.preventDefault();
+    if (!tournyInput.val().trim()) {
+      return;
+    }
+
+    addTourny({
+      name: tournyInput.val().trim()
+    });
+  }
+
+  function addTourny(tournyData) {
+    $.post("/api/tournament_info", tournyData).then(() => {
+      window.location.replace("/teamInfo");
+    });
+  }
 });
-
-// Does a post to the signup route. If successful, we are redirected to the members page
-// Otherwise we log any errors
-function enterTourny(tournament) {
-  $.post("/api/tournament_info", {
-    name: tournament
-  })
-    .then(() => {
-      window.location.replace("/team_info");
-      // If there's an error, handle it by throwing up a bootstrap alert
-    })
-    .catch(handleLoginErr);
-}
-
-function handleLoginErr(err) {
-  $("#alert .msg").text(err.responseJSON);
-  $("#alert").fadeIn(500);
-}
