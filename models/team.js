@@ -12,15 +12,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     seed: {
       type: DataTypes.INTEGER
-    },
-    tournyId: {
-      type: DataTypes.INTEGER
     }
   });
 
   Team.associate = function(models) {
     Team.belongsTo(models.Tournament, {
-      foreignKey: "tournyId"
+      foriegnKey: "tournyId"
     });
   };
   return Team;

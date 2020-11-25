@@ -25,7 +25,7 @@ module.exports = function(app) {
         res.status(401).json(err);
       });
   });
-  app.post("/api/tournament_breakdown", (req, res) => {
+  app.post("/api/tournament_win", (req, res) => {
     db.Winner.create({
       game: req.body.game,
       round: req.body.round,
@@ -48,14 +48,25 @@ module.exports = function(app) {
         console.log(err);
       });
   });
-  app.get("/api/tournament_breakdown", (req, res) => {
+  app.get("/api/team_info", (req, res) => {
+    db.Team.findAll({
+      order: Sequelize.col("seed")
+    })
+      .then(result => {
+        res.json(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
+
+  app.get("/api/tournamentBreakdown", (req, res) => {
     const teamInfo = db.Tournament.findAll({
       include: {
         model: db.Team,
         where: {
-          TournamentId: Sequelize.col("tournyId")
-        },
-        order: ["seed", "DESC"]
+          TournamentId: Sequelize.col("TournamentTournyId")
+        }
       }
     });
 

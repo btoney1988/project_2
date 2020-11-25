@@ -1,16 +1,26 @@
 $(document).ready(() => {
-  $.get("/api/tournament_breakdown")
-    .then(data => {
-      $(".teamName").text(data[0].Teams[i].name);
-      $(".rank").text(data[0].Teams[i].rank);
+  const breakdownCard = $("#breakdown");
+  $.get("/api/team_info")
+    .then(response => {
+      console.log(response);
+      for (i = 0; i < response.length; i++) {
+        breakdownCard.append(
+          `<div class="col-3 mt-2">
+             <div class="card" style="width: 14rem;">
+               <div class="card-body text-center">
+                 <h5 class="teamName">${response[i].name}</h5>
+                 <h7 class="rank">Seed: ${response[i].seed}</h7>
+               </div>
+             </div>
+           </div>`
+        );
+      }
     })
     .catch(err => {
       console.log(err);
     });
-  const allTeam = document.getElementsByClassName("card-body");
-  for (let i = 1; i < allTeam.length; i++) {
-    $(".startBtn").click(() => {
-      window.location.replace("/tournamentBracket");
-    });
-  }
+  $(document).on("click", "#startTournament", event => {
+    event.preventDefault();
+    window.location.replace("/tournamentBracket");
+  });
 });

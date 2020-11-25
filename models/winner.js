@@ -13,12 +13,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     gameWinner: {
       type: DataTypes.INTEGER
-    },
-    team1: {
-      type: DataTypes.INTEGER
-    },
-    team2: {
-      type: DataTypes.INTEGER
     }
   });
 

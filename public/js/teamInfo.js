@@ -4,12 +4,10 @@ $(document).ready(() => {
     .then(response => {
       const i = response.length - 1;
       $(".tourneyName").text(response[i].name);
-      // If there's an error, log the error
     })
     .catch(err => {
       console.log(err);
     });
-
   const teamInput = $("#teamName");
   const seedInput = $("#teamSeed");
   $(document).on("click", "#tourneyBreakdown", handleTourneyBreakdownButton);
@@ -45,7 +43,7 @@ $(document).ready(() => {
     function addTeam(teamData) {
       $.post("/api/teamInfo", teamData).then(() => {
         teamInputList.append(
-          `<li class='text-center'> ${teamData.name} ${teamData.seed}</li>`
+          `<li>Team: <span class="text-dark">${teamData.name}</span> Seed: <span class="text-dark">${teamData.seed}</span></li>`
         );
       });
     }
