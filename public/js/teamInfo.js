@@ -50,16 +50,15 @@ $(document).ready(() => {
     if (!teamInput.val() || !seedInput.val() || !tournamentSelect.val()) {
       window.location.replace("/tournamentBreakdown");
     } else {
-      addTeam(teamData);
-    }
+      addTeam({
+        name: teamInput.val().trim(),
+        seed: seedInput.val().trim(),
+        TournamentTournyId: tournamentSelect.val()
+      });
 
-    addTeam({
-      name: teamInput.val().trim(),
-      seed: seedInput.val().trim(),
-      TournamentTournyId: tournamentSelect.val()
-    });
-    teamInput.val("");
-    seedInput.val("");
+      teamInput.val("");
+      seedInput.val("");
+    }
   }
 
   function handleAddTeamButton(event) {
