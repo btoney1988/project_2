@@ -2,12 +2,11 @@ $(document).ready(() => {
   const teamInputList = $("#addTeam");
   const teamInput = $("#teamName");
   const seedInput = $("#teamSeed");
-  const teamInfoForm = $("#team-info");
   const tournamentSelect = $("#tournaments");
   let TournamentTournyId;
 
   $(document).on("click", "#tourneyBreakdown", handleTourneyBreakdownButton);
-  $(teamInfoForm).on("click", "#addTeam", handleAddTeamButton);
+  $(document).on("click", "#addTeam", handleAddTeamButton);
 
   function getTournamentInfo() {
     $.get("/api/tournament_info", renderTourneyList);
