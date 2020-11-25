@@ -4,7 +4,9 @@ $(document).ready(() => {
   const tournamentSelect = $("#tournaments");
   let TournamentTournyId;
   $(tourneyForm).on("click", "#tourneyBreakdown", handleTourneyBreakdownButton);
-
+  $(document).on("click", "#home", () => {
+    window.location.replace("/");
+  });
   function getTournamentInfo() {
     $.get("/api/tournament_info", renderTourneyList);
   }
